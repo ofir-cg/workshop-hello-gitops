@@ -1,3 +1,4 @@
+#October 2020
 # Workshop Hello GitOps
 
 Example project to demonstrate GitOps using [Kustomize](https://github.com/kubernetes-sigs/kustomize), GitHub Actions and [ArgoCD](https://github.com/argoproj/argo-cd/)
