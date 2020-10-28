@@ -1,13 +1,20 @@
-apiVersion: networking.k8s.io/v1beta1
+apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
   name: hello-gitops
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
 spec:
   rules:
-    - http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              serviceName: hello-gitops
-              servicePort: http
+  - host: a5f217bbc83034f6895a1d1ed2068d06-1998035013.eu-west-2.elb.amazonaws.com
+    http:
+      paths:
+      - backend:
+          serviceName: argocd-server
+          servicePort: http
+  tls:
+    - hosts:
+      - argocd.iamalexsjones.com
+      secretName: argocd-tls
